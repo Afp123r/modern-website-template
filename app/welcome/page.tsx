@@ -1,103 +1,83 @@
 // client/src/pages/WelcomePage.tsx
-// 或者如果你使用 Next.js App Router，它可能是 app/page.tsx
 
 import React from 'react';
-import { Card, Button, Typography, Space, Row, Col } from 'antd';
-import { LoginOutlined, UploadOutlined, ScanOutlined, FolderOpenOutlined } from '@ant-design/icons';
-// 根据你的前端框架选择合适的 Link 组件
-// 如果是 Create React App / Vite + react-router-dom:
+// 如果你的项目使用 react-router-dom 进行路由管理
 import { Link } from 'react-router-dom';
-// 如果是 Next.js (Pages Router 或 App Router):
-// import Link from 'next/link';
-
-const { Title, Paragraph } = Typography;
 
 const WelcomePage: React.FC = () => {
   return (
     <div style={{
       display: 'flex',
+      flexDirection: 'column', // 垂直排列子元素
       justifyContent: 'center',
       alignItems: 'center',
-      minHeight: 'calc(100vh - 120px)', // 减去 Header 和 Footer 的高度，让内容居中
-      background: '#f0f2f5',
+      minHeight: '80vh', // 占据视口高度的80%
+      backgroundColor: '#f0f0f0', // 浅灰色背景
+      fontFamily: 'Arial, sans-serif', // 简单字体
+      color: '#333', // 深灰色文字
+      textAlign: 'center',
       padding: '20px',
-      boxSizing: 'border-box' // 确保 padding 不会导致溢出
+      boxSizing: 'border-box'
     }}>
-      <Card
-        style={{
-          width: '100%',
-          maxWidth: '800px', // 稍微增大最大宽度
-          boxShadow: '0 6px 20px rgba(0,0,0,0.15)', // 更明显的阴影
-          borderRadius: '12px', // 更圆润的边角
-          padding: '30px 40px', // 增加内边距
-          textAlign: 'center'
-        }}
-        bordered={false} // 移除边框
-      >
-        <Title level={1} style={{ marginBottom: '15px', color: '#1890ff' }}>
-          智能文件管家
-        </Title>
-        <Title level={4} style={{ color: '#666', marginTop: 0, marginBottom: '40px' }}>
-          您的条形码文件管理系统
-        </Title>
+      <h1 style={{ fontSize: '2.5em', marginBottom: '20px', color: '#007bff' }}>
+        欢迎来到文件管理系统
+      </h1>
+      <p style={{ fontSize: '1.2em', maxWidth: '600px', lineHeight: '1.6', marginBottom: '30px' }}>
+        本系统旨在帮助您高效地管理和查找文件。
+        通过条形码，您可以轻松追踪和访问您的文档。
+      </p>
 
-        <Paragraph style={{ fontSize: '18px', lineHeight: '1.8', color: '#333', maxWidth: '600px', margin: '0 auto 40px' }}>
-          告别繁琐的文件查找，借助强大的条形码技术，本系统助您轻松实现文件的数字化归档、快速检索与高效管理。
-          无论身处何地，您的重要文档都触手可及。
-        </Paragraph>
+      <div style={{ display: 'flex', gap: '20px' }}>
+        <Link to="/login" style={{ textDecoration: 'none' }}>
+          <button style={{
+            padding: '12px 25px',
+            fontSize: '1.1em',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+            minWidth: '120px'
+          }}>
+            登录
+          </button>
+        </Link>
+        <Link to="/upload" style={{ textDecoration: 'none' }}>
+          <button style={{
+            padding: '12px 25px',
+            fontSize: '1.1em',
+            backgroundColor: '#28a745',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+            minWidth: '120px'
+          }}>
+            上传文件
+          </button>
+        </Link>
+        <Link to="/files" style={{ textDecoration: 'none' }}>
+          <button style={{
+            padding: '12px 25px',
+            fontSize: '1.1em',
+            backgroundColor: '#ffc107',
+            color: '#333',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+            minWidth: '120px'
+          }}>
+            查看文件
+          </button>
+        </Link>
+      </div>
 
-        <Row gutter={[24, 24]} justify="center">
-          <Col xs={24} sm={12} md={6}>
-            <Link to="/login">
-              <Button
-                type="primary"
-                size="large"
-                icon={<LoginOutlined />}
-                style={{ width: '100%', height: '60px', borderRadius: '8px', fontSize: '18px' }}
-              >
-                立即登录
-              </Button>
-            </Link>
-          </Col>
-          <Col xs={24} sm={12} md={6}>
-            <Link to="/upload">
-              <Button
-                size="large"
-                icon={<UploadOutlined />}
-                style={{ width: '100%', height: '60px', borderRadius: '8px', fontSize: '18px' }}
-              >
-                上传文件
-              </Button>
-            </Link>
-          </Col>
-          <Col xs={24} sm={12} md={6}>
-            <Link to="/files">
-              <Button
-                size="large"
-                icon={<FolderOpenOutlined />}
-                style={{ width: '100%', height: '60px', borderRadius: '8px', fontSize: '18px' }}
-              >
-                查看文件
-              </Button>
-            </Link>
-          </Col>
-          <Col xs={24} sm={12} md={6}>
-            <Link to="/scan">
-              <Button
-                size="large"
-                icon={<ScanOutlined />}
-                style={{ width: '100%', height: '60px', borderRadius: '8px', fontSize: '18px' }}
-              >
-                扫描条形码
-              </Button>
-            </Link>
-          </Col>
-        </Row>
-
-        <Paragraph type="secondary" style={{ marginTop: '50px', fontSize: '14px' }}>
-          开始您的数字化文件管理新体验！
-        </Paragraph>
-      </Card>
+      <p style={{ fontSize: '0.9em', color: '#666', marginTop: '50px' }}>
+        开始您的数字化文件管理新体验！
+      </p>
     </div>
   );
 };
